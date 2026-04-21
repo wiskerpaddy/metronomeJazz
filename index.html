@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jazz Muscle Metronome</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #00ffcc;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100dvh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            background: #2a2a2a;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            border: 2px solid #333;
+        }
+        h1 { font-size: 1.5rem; margin-bottom: 20px; text-transform: uppercase; }
+        
+        .bpm-display { font-size: 4rem; font-weight: bold; margin: 10px 0; }
+        
+        input[type="range"] {
+            width: 100%;
+            margin: 20px 0;
+            cursor: pointer;
+        }
+
+        .visualizer {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .beat-dot {
+            width: 20px;
+            height: 20px;
+            background: #444;
+            border-radius: 50%;
+            transition: 0.1s;
+        }
+        .beat-dot.active { background: #00ffcc; box-shadow: 0 0 15px #00ffcc; }
+        .beat-dot.accent { background: #ffcc00; box-shadow: 0 0 15px #ffcc00; }
+
+        .btn-main {
+            background: #00ffcc;
+            color: #1a1a1a;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+        .btn-main:active { transform: scale(0.95); }
+        .btn-main.stop { background: #ff4444; }
+
+        .mode-switch {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Jazz Metronome</h1>
+    
+    <div class="visualizer">
+        <div class="beat-dot" id="dot-0"></div>
+        <div class="beat-dot" id="dot-1"></div>
+        <div class="beat-dot" id="dot-2"></div>
+        <div class="beat-dot" id="dot-3"></div>
+    </div>
+
+    <div class="bpm-display" id="bpmValue">120</div>
+    <input type="range" id="bpmSlider" min="40" max="250" value="120">
+    
+    <button class="btn-main" id="startBtn">START</button>
+
+    <div class="mode-switch">
+        <label>
+            <input type="checkbox" id="jazzMode" checked> Jazz Mode (2&4 Accent)
+        </label>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
